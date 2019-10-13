@@ -2,12 +2,10 @@
 
 ## Este Webpack workflow permite
 - Carga y compilar Pug a HTML y minificarlo
-  - 
 - Carga y compilar SCSS a CSS y minificarlo
 - Carga tipografias/fonts woff, woff2, ttf & eot
 - Carga imagenes Gif, jpg y png y minifica el peso
 - Carga archivos SVG
-- Carga Archivos Mp3 y Mp4
 
 ## Requerimientos
 
@@ -35,7 +33,7 @@
 - Iniciar un servidor local para desarrollo:
   - Se inicia con: `npm start`
  
- ## Folder Struct:
+ ## Estructura de la carpeta:
 
 ```
 ├── .babelrc
