@@ -3,7 +3,7 @@
 ## Este Webpack workflow permite
 - Carga y compilar Pug a HTML y minificarlo
 - Carga y compilar SCSS a CSS y minificarlo
-- Carga tipografias/fonts woff, woff2, ttf & eot
+- Carga tipografias /fonts woff, woff2, ttf & eot
 - Carga imagenes Gif, jpg y png y minifica el peso
 - Carga archivos SVG
 
