@@ -1,0 +1,27 @@
+@import 'base/reset';
+@import 'base/typo';
+@import 'base/fonts';
+@import 'utilities/variables';
+@import 'utilities/functions';
+@import 'utilities/mixins';
+@import 'themes/theme';
+@import 'themes/admin';
+@import 'views/home';
+@import 'layouts/header';
+@import 'layouts/section';
+@import 'layouts/form';
+@import 'layouts/footer';
+@import 'components/buttons';
+
+body{
+    background-color: $red;
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+::placeholder{
+    background-color: brown;
+}
+
