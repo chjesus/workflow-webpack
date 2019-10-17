@@ -7,14 +7,12 @@ const path = require('path');
 module.exports = {
     devtool: 'source-map',
     entry: {
-        app:[
-            './src/app.js',
-        ]
+        app: ['@babel/polyfill','./src/main.js'],
     },
     mode: 'development',
     output: {
         path: path.resolve(__dirname,'dist'),
-        filename: 'js/main.js'
+        filename: 'js/[name].js'
     },
     devServer: {
         contentBase: path.join(__dirname,'dist'),
@@ -59,24 +57,47 @@ module.exports = {
             {
                 test: /^(?!.*\.{test,min}\.js$).*\.js$/,
                 exclude: /(node_modules)/,
-                use: {
-                  loader: 'babel-loader',
-                  options: {
-                    presets: ['@babel/preset-env']
-                  }
-                }
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            presets: ['@babel/preset-env'],
+                        }
+                    },
+                    {
+                        loader: 'eslint-loader',
+                        options:{
+                            cache: true,
+                            failOnError: true,
+                            emitWarning: true,
+                            configFile: "./.eslintrc.json"
+                        }
+                    }
+                ]
             },
             {
                 test: /\.(sa|sc|c)ss$/,
                 exclude: /node_modules/,
                 use: [
-                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options:{
+                            publicPath: '../',
+                        }
+                    },
                     {
                         loader: 'css-loader',
                         options: {
                             sourceMap: true,
                             importLoaders: 2,
                         },
+                    },
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            sourceMap: true,
+                            importLoaders: 1,
+                        }
                     },
                     {
                         loader: 'postcss-loader',
@@ -97,13 +118,6 @@ module.exports = {
                               ),
                             ]
                         }
-                    },
-                    {
-                        loader: 'sass-loader',
-                        options: {
-                            sourceMap: true,
-                            importLoaders: 1,
-                        }
                     }
                 ]
             },
@@ -112,20 +126,19 @@ module.exports = {
                 use: 'pug-loader'
             },
             {
-                test: /\.(png|jpe?g|gif|svg)$/,
+                test: /\.(png|jpe?g|gif)$/,
                 use: [
                     {
                         loader: 'file-loader',
                         options:{
                             name: '[name].[ext]',
-                            outputPath: 'assets/'
+                            outputPath: 'img/',
                         }
                     }
                 ]
             },
             {
                 test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
-                exclude: /node_modules/,
                 use: [
                     {
                         loader: 'url-loader',

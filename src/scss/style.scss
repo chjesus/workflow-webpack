@@ -9,19 +9,11 @@
 @import 'views/home';
 @import 'layouts/header';
 @import 'layouts/section';
+@import 'layouts/about';
+@import 'layouts/service';
+@import 'layouts/portfolios';
 @import 'layouts/form';
 @import 'layouts/footer';
 @import 'components/buttons';
-
-body{
-    background-color: $red;
-    width: 100%;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-}
-
-::placeholder{
-    background-color: brown;
-}
-
+@import 'components/navigation';
+@import 'layouts/mobile';
