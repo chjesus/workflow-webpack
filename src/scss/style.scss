@@ -8,14 +8,8 @@
 @import 'themes/admin';
 @import 'views/home';
 @import 'layouts/header';
-@import 'layouts/hours';
-@import 'layouts/section';
-@import 'layouts/testimnials';
-@import 'layouts/about';
-@import 'layouts/service';
-@import 'layouts/portfolios';
-@import 'layouts/form';
-@import 'layouts/footer';
+@import 'layouts/mobile';
 @import 'components/buttons';
 @import 'components/navigation';
-@import 'layouts/mobile';
+
+@import '~bootstrap/scss/bootstrap';

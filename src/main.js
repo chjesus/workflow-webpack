@@ -1,11 +1,11 @@
 /**
  * import styles scss
  */
+
 import './scss/style.scss';
 
 /**
  * import images in the project
- * 
  * import Icon from './img/name.jpg';
  */
 
@@ -14,4 +14,8 @@ import './scss/style.scss';
  * import { nameFunction } from "./name.js"
  */
 
+/**
+ * import 'bootstrap';
+ */
 
+import 'bootstrap';
