@@ -1,9 +1,9 @@
-# Coding Challenge using Webpack
+# Workflow using Webpack
 
 ## Requirements to run the project
 
-- NodeJs v12.18.3;
-- NPM v6.14.6;
+- NodeJs => v10.18.0;
+- NPM => v6.13.4;
 
 ## How to use it:
 
@@ -24,34 +24,43 @@
   - It starts with: `npm run buid'`
 
 - start a local server for development:
+
   - It starts with: `npm run start`
+
+- Deploy to gh-pages:
+  - edit package.json: `homepage: url`
+  - it starts with: `npm run deploy`
 
 ## Folder structure:
 
 ```
 ├── .babelrc
 ├── .gitignore
-|── package-lock.json
+├── package-lock.json
 ├── package.json
 ├── README.md
 ├── webpack.config.js
 ├── node_modules
 ├── dist
-|   ├── fonts
-|   ├── img
+│   ├── fonts
+│   ├── img
 │   ├── css
-|   |   └── style.css
+│   │  └── style.css
 │   ├── js
-|   |   └── main.js
+│   │   └── main.js
 │   └── index.html
 └── src
     ├── components
     ├── fonts
     ├── img
-    |── pug
-    |   └── components
     ├── sass
-    |   └── components
-    ├── index.pug
-    └── app.js
+    │   ├── base
+    │   ├── components
+    │   ├── layouts
+    │   ├── themes
+    │   ├── utilities
+    │   ├── views
+    │   └── style.scss
+    ├── index.html
+    └── main.js
 ```
