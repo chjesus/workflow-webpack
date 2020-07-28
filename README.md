@@ -1,44 +1,32 @@
-# Webpack Workflow
+# Coding Challenge using Webpack
 
-## Este Webpack workflow permite
+## Requirements to run the project
 
-- Cargar y compilar Pug a HTML y minificarlo
-- Cargar y compilar SCSS a CSS y minificarlo
-- Cargar tipografias /fonts woff, woff2, ttf & eot
-- Cargar imagenes Gif, jpg y png y minifica el peso
-- Cargar archivos SVG
+- NodeJs v12.18.3;
+- NPM v6.14.6;
 
-## Requerimientos
+## How to use it:
 
-- NodeJs > v10.x;
-- NPM > v6.4;
-
-## Como usarlo?:
-
-1. Clonar el Proyecto
-2. `cd workflow-webpack`
+1. clone the project
+2. `cd nameFolder`
 3. `npm install`
-4. `npm start`
+4. `npm run start`
 
-## Consideraciones
+## Considerations
 
-- La entrada de tus archivos está dentro de la carpeta: `src`
-- El archivo webpack.config.js es para configurar webpack.
+- Files to work in developement mode are in: `src`
+- The webpack.config.js file is to configure webpack.
 
-## Instalar dependencias de node.js
+## Scripts created
 
-- Instalar dependencias de node.js: `npm install`
+- Delete and create the project in production:
 
-## Scripts creados para dev
+  - It starts with: `npm run buid'`
 
-- Borra y crea el proyecto en produccion:
+- start a local server for development:
+  - It starts with: `npm run start`
 
-  - Se inicia con: `npm run buid'`
-
-- Iniciar un servidor local para desarrollo:
-  - Se inicia con: `npm start`
-
-## Estructura de la carpeta:
+## Folder structure:
 
 ```
 ├── .babelrc

@@ -1,5 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const HtmlWebpackInlineSVGPlugin = require('html-webpack-inline-svg-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// const CopyWebpackPlugin = require('copy-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const postcssPresetEnv = require('postcss-preset-env');
 const path = require('path');
@@ -19,26 +21,18 @@ module.exports = {
     compress: true,
     open: true,
   },
+  performance: {
+    maxEntrypointSize: 1000000,
+    maxAssetSize: 1000000,
+    hints: 'warning',
+  },
   plugins: [
     new HtmlWebpackPlugin({
       title: 'My App',
       template: './src/index.html',
       filename: 'index.html',
-      // minify: {
-      //   collapseWhitespace: false,
-      //   removeComments: true,
-      //   removeRedundantAttributes: true,
-      //   removeScriptTypeAttributes: true,
-      //   removeStyleLinkTypeAttributes: true,
-      //   useShortDoctype: true,
-      // },
+      minify: false,
     }),
-    /** Generating Multiple HTML Files */
-    // new HtmlWebpackPlugin({
-    //   title: 'My About', // Title
-    //   template: './src/about.html', // Directory
-    //   filename: 'about.html', // Name HTML File
-    // }),
     new MiniCssExtractPlugin({
       filename: 'css/[name].css',
       chunkFilename: '[id].css',
@@ -60,84 +54,92 @@ module.exports = {
     }),
   ],
   module: {
-    rules: [{
-      test: /^(?!.*\.{test,min}\.js$).*\.js$/,
-      exclude: /(node_modules)/,
-      use: [{
-        loader: 'babel-loader',
-        options: {
-          presets: ['@babel/preset-env'],
-        },
-      }],
-    },
-    {
-      test: /\.(sa|sc|c)ss$/,
-      exclude: /node_modules/,
-      use: [{
-        loader: MiniCssExtractPlugin.loader,
-        options: {
-          publicPath: '../',
-        },
+    rules: [
+      {
+        test: /^(?!.*\.{test,min}\.js$).*\.js$/,
+        exclude: /(node_modules)/,
+        use: [{
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+          },
+        }],
       },
       {
-        loader: 'css-loader',
-        options: {
-          sourceMap: true,
-          importLoaders: 2,
+        test: /\.(sa|sc|c)ss$/,
+        exclude: /node_modules/,
+        use: [{
+          loader: MiniCssExtractPlugin.loader,
+          options: {
+            publicPath: '../',
+          },
         },
+        {
+          loader: 'css-loader',
+          options: {
+            sourceMap: true,
+            importLoaders: 2,
+          },
+        },
+        {
+          loader: 'sass-loader',
+          options: {
+            sourceMap: true,
+            importLoaders: 1,
+          },
+        },
+        {
+          loader: 'postcss-loader',
+          options: {
+            ident: 'postcss',
+            plugins: () => [
+              postcssPresetEnv({
+                browsers: 'last 2 versions',
+                autoprefixer: {
+                  grid: true,
+                  cascade: false,
+                },
+                stage: 3,
+                features: {
+                  'nesting-rules': true,
+                },
+              }),
+            ],
+          },
+        },
+        ],
       },
       {
-        loader: 'sass-loader',
-        options: {
-          sourceMap: true,
-          importLoaders: 1,
-        },
+        test: /\.pug$/,
+        use: 'pug-loader',
       },
       {
-        loader: 'postcss-loader',
+        test: /\.(png|jpe?g|gif)$/,
+        use: [{
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+            outputPath: 'img/',
+          },
+        }],
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
+        use: [{
+          loader: 'url-loader',
+          options: {
+            name: '[name].[ext]',
+            outputPath: 'fonts/',
+          },
+        }],
+      },
+      {
+        test: /\.html$/i,
+        loader: 'html-loader',
         options: {
-          ident: 'postcss',
-          plugins: () => [
-            postcssPresetEnv({
-              browsers: 'last 2 versions',
-              autoprefixer: {
-                grid: true,
-                cascade: false,
-              },
-              stage: 3,
-              features: {
-                'nesting-rules': true,
-              },
-            }),
-          ],
+          minimize: true,
         },
       },
-      ],
-    },
-    {
-      test: /\.pug$/,
-      use: 'pug-loader',
-    },
-    {
-      test: /\.(png|jpe?g|gif)$/,
-      use: [{
-        loader: 'file-loader',
-        options: {
-          name: '[name].[ext]',
-          outputPath: 'img/',
-        },
-      }],
-    },
-    {
-      test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
-      use: [{
-        loader: 'url-loader',
-        options: {
-          name: '[name].[ext]',
-          outputPath: 'fonts/',
-        },
-      }],
-    },
     ],
   },
 };

@@ -4,12 +4,8 @@
 @import 'utilities/variables';
 @import 'utilities/functions';
 @import 'utilities/mixins';
-@import 'themes/theme';
-@import 'themes/admin';
 @import 'views/home';
-@import 'layouts/header';
+@import 'layouts/container';
 @import 'layouts/mobile';
 @import 'components/buttons';
 @import 'components/navigation';
-
-@import '~bootstrap/scss/bootstrap';
